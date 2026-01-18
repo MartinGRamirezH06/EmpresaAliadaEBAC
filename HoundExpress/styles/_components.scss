@@ -1,0 +1,485 @@
+*{
+    font-family: "Opens Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings:"wdth" 100;
+}
+body{
+    width:100%;
+    margin: 0;
+    @include borderBox;   
+}
+footer{
+    max-height: 400px;
+    overflow: auto;
+    @include phones{
+    max-height: 200px;
+    }
+}
+img{
+    width: 100px;
+}
+.header{
+    padding: 43px 50px;
+    background-color:$white;
+    @include borderBox;
+
+    img{
+        width: 100%;
+    }
+    >div:nth-child(5){
+        align-items: center;
+        justify-items: center;
+        justify-content: center;
+
+        select{
+            font-size: 25px;
+            padding: 0.5rem;
+            margin:0.5rem;
+        }
+    }
+    >div:nth-child(7){
+        background-color: $red;
+        padding: 0.5rem;
+
+        text-align: center;
+        color:$white;
+        @include borderBox;
+        @include phones{
+            padding: 0;
+            font-size: 0.7rem;
+        }
+    }
+    @include tablets{
+        padding: 0px;
+    }
+    @include phones{
+        padding: 0px;
+        h2{
+            font-size: 1rem;
+        }
+        p{
+            font-size: 14px;
+        }
+        >div:nth-child(5){
+            select{
+                font-size: 14px;
+                padding: 0;
+            }
+        }
+    }
+}
+.header__div-numeros--inline{
+    a{
+        text-decoration: none;
+        color: $black;
+    }
+}
+.header__nav{
+    background-color: $blue;
+    justify-content: space-between;
+    padding: 0.5rem 50px;
+
+    > a{
+        text-decoration: none;
+        text-align: center;
+    }
+    button{
+        @extend %button;
+        &:hover{
+            @include animationTransition($lightblue,0.5s);
+        }       
+    }
+    @include tablets{
+        padding: 1rem 0px;
+        button{
+            padding: 0px;
+            margin: 0;
+            font-size: 1.5rem;
+        }
+    }
+    @include phones{
+        padding: 1rem 0px;
+        button{
+            padding: 0px;
+            margin: 0;
+            font-size: 0.85rem;
+        }
+    }
+}
+.banner-container{
+    align-self: center;
+    justify-content: center;
+    justify-items: center;
+    text-align: center;
+    padding: 1rem;
+    background-color: $blue;
+    color: $white;
+    @include borderBox;
+
+    >article{
+        h3{
+            font-size: 40px;
+            font-weight: 600;
+        }
+        p{
+            font-size: 30px;
+        }
+
+        &:nth-child(2){
+            width: 100%;
+            background-image: url(../img/bannerProvisional.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+            color: $black;
+            background-position-y: 50% ;
+            @include borderBox;
+        }
+    }
+    @include phones{
+        padding: 0.5em;
+        >article{
+            h3{
+                font-size: 25px;
+            }
+            p{
+                font-size: 18px;
+            }
+        }
+    }
+}
+.main-container2{
+    .main-container2__section-Form{
+        align-items: start;
+        >.main-container2__article-img{
+            background-image: url(../img/Avion.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+            color: $black;
+            @include borderBox;
+            width: 100%;
+        }
+    }
+}
+.FormRegistrer{
+    background-color:$blue2;
+    color:$white;
+    font-weight: 600;
+
+    form{
+        >div{
+            font-size: 25px;
+
+            h2{
+                text-align: center;
+                font-size: 30px;
+            }
+
+            &:last-child{
+                align-items: center;
+                justify-content: center;
+            }
+        }
+
+        input{
+            font-size: 20px;
+        }
+
+        select{
+            font-size: 20px;
+        }
+    }
+}
+.FormRegistrer__button--Registrer{
+    border-radius: 30px;
+    font-size: 20px;
+    background-color: $lightblue2;
+    border-color:$lightblue2; 
+    @extend %button;
+    
+    &:hover{
+        @include animationTransition($lightblue,0.5s );
+    }
+}
+
+.main-container3{
+    @include borderBox;
+    align-items: center;
+    text-align: center;
+
+    .main-container3__Panel-Estado-General{
+        font-size: 25px;
+        border:3px solid $black;
+        @include borderBox;
+
+        thead{
+            color: $white;
+            background-color: $blue;
+        }
+        tbody{
+            tr{
+                td{
+                    &.showPendiente{
+                        background-color: $red;
+                    }
+                    &.showEnTransito{
+                        background-color: $yellow;
+                    }
+                    &.showEntregado{
+                        background-color: $green;
+                    }
+
+                }
+            }
+        }
+        @include phones{
+            tr{
+                border:1px solid $black;
+            }
+            td{
+                font-size:15px;
+                border-bottom: 1px solid $black;
+            }
+            td::before{
+                content: attr(data-label);
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+
+.main-container4{
+    @include borderBox;
+    align-items: center;
+    text-align: center;
+    .main-container4__guideList{
+        font-size: 25px;
+        border: 3px solid $black;
+        @include borderBox;
+        article:first-child{
+            p{
+                font-weight: 600;
+            }
+        }
+        
+        td,th{
+            padding: 0.5rem;
+            word-wrap: break-word;
+        }
+        table{
+            @include borderBox;
+            margin:0.5rem;
+            table-layout: auto;
+            overflow-x: auto;
+            word-break: break-word;
+        }
+        thead{
+            background-color: $blue;
+            color: $white;
+            @include borderBox;
+        }
+        tbody{
+            @include borderBox;
+            tr {
+                td[scope=row]{
+                background-color: rgb(229, 225, 222);
+                gap: 1rem;
+                }
+                td:last-child{
+                    display: flex;
+                    button{
+                        @extend %button;
+                        font-size: 14px;
+                        font-weight: 600;
+                        padding: 0.8rem;
+                        &:hover{
+                            @include animationTransition($lightblue,0.5s)
+                        }
+
+                    }
+                }
+            }
+        }
+        @include tablets{
+            tr{
+                border:1px solid $black;
+            }
+            td{
+                font-size:20px;
+                border-bottom: 1px solid $black;
+            }
+            td::before{
+                content: attr(data-label);
+                font-weight: bold;
+            }
+        }
+        @include phones{
+            tr{
+                border:1px solid $black;
+            }
+            td{
+                font-size:12px;
+                border-bottom: 1px solid $black;
+            }
+            td::before{
+                content: attr(data-label);
+                font-weight: bold;
+            }
+        }
+    }
+    .main-container4__historial-container{
+        width: 380px;
+        padding: 25px;
+        max-height: 70%;
+        background-color: $white;
+        box-shadow: -19px -1px 22px 15px rgba(0,0,0,0.30);
+        
+        .historial-container-cerrar{
+            .iconClose{
+                width: 2rem;
+                .imgClose{
+                    width: 100%;
+                }
+            }    
+        }
+        .historial-container-Titulo{
+            .title{
+                font-size: 1.5rem;
+                font-weight: 600;
+            }
+        }
+        .historial-container-Registro{
+            @extend %containerHistorial;
+        }
+    }
+
+}
+
+.footer-container{
+    background-color: $blue;
+    @include borderBox;
+
+    .redes-img{
+        justify-content: center;
+
+        a{
+            width: 48px;
+            display: block;
+
+            img{
+                width: 100%;
+            }
+        }
+    }
+    .__a--animation{
+        &:hover{
+            @include animationTransition($lightblue,0.5s)
+        }
+    }
+
+    >section{
+        &:nth-child(2){  
+            color: $white;
+            @include borderBox;
+            font-size: 20px;
+            align-self: center;
+        }
+
+        &:nth-child(3){
+            @include borderBox;
+            color: $white;
+            font-size: 20px;
+            align-self: center;
+
+            a{
+                display:inline-block;
+                margin-right: 0.5rem;
+                color: $white;
+                text-decoration: underline;
+            }
+        }
+
+        &:nth-child(4){
+            color:$white;
+            font-size: 30px;
+            @include borderBox;
+            
+            h3:first-child{
+                color: $lightblue;
+            }
+        }
+
+        &:nth-child(5){
+            color: $white;
+            
+            a{
+                color: $white;
+                text-decoration: none;
+                cursor:pointer;
+            }
+        }
+
+        &:nth-child(6){
+            color:$white;
+            @include borderBox;
+
+            h3{
+                font-size: 30px;
+            }
+        }
+
+        &:nth-child(7){
+            color:$white;
+
+            h3{
+                font-size: 30px;
+            }
+        }
+
+        &:nth-child(8){
+            color: $white;
+        }
+    }
+    @include phones{
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+        >section{
+            &:nth-child(1){
+                .redes-img{
+                    cursor: default;
+                }
+                >img{
+                    width:100%;
+                    display: flex;
+                    align-items: flex-start;
+                }
+            }
+            &:nth-child(2){
+                font-size: 15px;
+            }
+            &:nth-child(3){
+                font-size: 15px ;
+            }
+            &:nth-child(4){
+                text-align: center;
+                font-size: 25px;
+
+            }
+            &:nth-child(6){
+                h3,p{
+                    font-size: 13px;
+                }
+            }
+            &:nth-child(7){
+                line-height: 13px;
+                h3,h4,p{
+                    font-size: 13px;
+                }
+            }
+            &:nth-child(8){
+                font-size: 15px;
+            }
+        }
+    }
+}

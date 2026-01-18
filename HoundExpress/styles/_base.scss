@@ -1,0 +1,58 @@
+//Variables
+$white:#ffffff;
+$blue:#091E3F;
+$blue2:#133f86;
+$lightblue:rgb(106, 198, 222);
+$lightblue2:#164a9c;
+$red: rgb(230, 0, 0);
+$black:#000000;
+$green:#33cc33;
+$yellow:#ffcc00;
+//Mixin
+@mixin flexWrap{
+    display: flex;
+    flex-wrap: wrap;
+}
+@mixin borderBox{
+    box-sizing: border-box;
+}
+@mixin animationTransition($color,$time){
+    background-color: $color;
+    transition: $time ease-in-out;
+    border-color: $lightblue;
+}
+@mixin tablets{
+    @media(max-width: 1366px){
+        @content;
+    }
+}
+@mixin phones{
+    @media (max-width:37.5rem){
+        @content;     
+    }
+}
+
+//Extends
+%button{
+    font-size:23px;
+    padding: 0.5rem;
+    color: $white;
+    width: 100%;
+    margin: 8px;
+    @include borderBox;
+    background-color: $blue;
+    cursor: pointer;
+    border-color: $blue;
+    display:flex;
+    justify-content: center;
+    @include tablets{
+        cursor: default;
+    }
+}
+%containerHistorial{
+    margin:1em;
+    font-size: 1.3rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}

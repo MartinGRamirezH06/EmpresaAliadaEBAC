@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/main.css">
+    <script src="JS/script-formulario.js" defer></script>
+    <title>Registro de Guias</title>
+</head>
+<body>
+    <header class="header">
+        <div>
+            <img src="./img/logo-Hound_Express-bg-white.png" alt="Aqui va la imagen del logo">
+        </div>
+        <div></div>
+        <div class="header__div-numeros--inline">
+            <h2>Mexico:</h2>
+            <a href="+52(55) 4000 1920">+52(55) 4000 1920</a>
+        </div>
+        <div class="header__div-numeros--inline">
+            <h2>United States:</h2>
+            <a href="+1(95) 6568 3443">+1(95) 6568 3443</a>
+        </div>
+        <div>
+            <label for="Idioma"><h2>Idioma</h2></label>
+            <select name="SelectLenguage" id="Lenguage">
+                <option value=""></option>
+                <option value="Esp">Español</option>
+                <option value="Eng">Ingles</option>
+                <option value="Fr">Frances</option>
+            </select>
+        </div>
+        <div class="header__fila2">
+            <nav class="header__nav">
+                <a href="index.html"><button>Inicio</button></a>
+                <a href="registroGuias.html"><button>Registro de Guias</button></a>
+                <a href="panelEstadoGeneral.html"><button>Estado General</button></a>
+                <a href="listaDeGuias.html"><button>Lista de Guias</button></a>
+            </nav>
+        </div>
+        <div>
+            <h3>Administrador</h3>
+        </div>
+    </header>
+    <main class="main-container2">
+        <section class="main-container2__section-Form">
+            <article class="FormRegistrer">
+                <form action="" method="POST" name="registroPaquetes" target="_self" >
+                    <div>    
+                        <h2>Registra tu paquete</h2>
+                    </div>
+                    <div>    
+                        <label for="inputNumGuia">Ingresa tu numero de guia:</label>
+                        <input type="number" id="inputNumGuia" required maxlength="20">
+                    </div>
+                    <div>
+                        <label for="inputOrigen">Origen:</label>
+                        <input type="text" id="inputOrigen" required maxlength="100">
+                    </div>
+                    <div>
+                        <label for="inputDest">Destino:</label>
+                        <input type="text" id="inputDest" required maxlength="200">
+                    </div>
+                    <div>
+                        <label for="fechaRegistro">Fecha del registro:</label>
+                        <input type="date" id="fechaRegistro" required maxlength="10">
+                    </div>
+                    <div>
+                        <label for="inputEstadoIncial">Estado Inicial del paquete:</label>
+                        <select name="SeleccionarEstado" id="inputEstadoIncial">
+                                <option value=""></option>
+                                <option value="Pendiente">Pendiente</option>
+                                <option value="En Transito">En Transito</option>
+                                <option value="Entregado">Entregado</option>
+                        </select>
+                    </div>
+                    <div>
+                        <button class="FormRegistrer__button--Registrer" type="submit">Registrar</button>
+                    </div>
+                </form>
+            </article>
+            <article class="main-container2__article-img">
+                <!-- aqui va otra imagen -->
+            </article>
+        </section>
+        <section></section>
+    </main>  
+    <footer class="footer-container">
+        <!-- Incluye información como derechos de autor, enlaces de contacto, y cualquier otra información adicional que pueda ser útil, como enlaces a redes sociales o política de privacidad. -->
+        <section>
+            <img src="img/logoAzulBlancoHE.png" alt="Aqui va la imagen del footer">
+            <div class="redes-img">
+                <a class="__a--animation" href="https://www.linkedin.com/company/hound-express/"><img src="img/icons8-linkedin-48.png" alt="Aqui va el link de linkedin"></a>
+                <a class="__a--animation" href="https://www.facebook.com/houndexpress?mibextid=kFxxJD"><img src="img/icons8-facebook-48.png" alt="Aqui va el link a facebook"></a>
+                <a class="__a--animation" href="https://www.instagram.com/hound.express/?igsh=OGQ5ZDc2ODk2ZA%3D%3D"><img src="img/icons8-instagram-48.png" alt="Aqui va el link a instagram"></a>
+            </div>
+        </section>
+        <section>
+            <p>Somos un equipo de expertos en logística, tecnología y comercio internacional. Te queremos ayudar a llevar tu empresa al siguiente nivel con soluciones de importación, exportación y logística nacional e internacional.</p>
+        </section>
+        <section>
+            <p>Pagina de donde saque los iconos: </p>
+            <a class="__a--animation" target="_blank" href="https://icons8.com"> Iconos de Icons8</a>
+            <a class="__a--animation" target="_blank" href="https://icons8.com/icon/yGcWL8copNNQ/facebook">Facebook </a>
+            <a class="__a--animation" target="_blank" href="https://icons8.com/icon/32323/instagram">Instagram</a>
+            <a class="__a--animation" target="_blank" href="https://icons8.com/icon/13930/linkedin">LinkedIn</a>  
+        </section>
+        <section>
+            <h3>Somos</h3>
+            <h3>Hound Express</h3>
+        </section>
+        <section>
+            <a class="__a--animation" href="index.html">Inicio</a>
+            <a class="__a--animation" href="registroGuias.html">Registro de Guias</a>
+            <a class="__a--animation" href="panelEstadoGeneral.html">Estado General</a>
+            <a class="__a--animation" href="listaDeGuias.html">Lista de Guias</a>
+        </section>
+        <section>
+            <h3>Servicio al Cliente</h3>
+            <p>Lunes a Viernes de 09:00 a 18:00 hrs</p>
+            <p>Sábados de 09:00 a 13:00 hrs</p>   
+        </section>
+        <section>
+            <h3>Contacto</h3>
+            <h4>MX</h4>
+            <p>+52(55) 4000 1920</p>
+            <p>sclientes1@hound-express.com</p>
+            <h4>EUA</h4>
+            <p>+1(956) 568 3443</p>
+            <p>cslaredo1@hound-express.com</p>
+        </section>
+        <section>
+            <p>Copyright © 2025 Hound Express. Todos los derechos reservados.</p>
+            <p>Terminos y condiciones</p>
+            <p>Politica de Privacidad</p>
+        </section>
+    </footer>
+</body>
+</html>
