@@ -92,9 +92,3 @@ function guardarLocalStorage(){
     }
 }
 //---------------------
-
-
-
-
-
-
