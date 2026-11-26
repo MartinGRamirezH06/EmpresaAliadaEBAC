@@ -1,12 +1,9 @@
-import { useMemo, useState } from "react";
-import type { Package } from "../types/Package";
+import { useMemo} from "react";
+import { useSelector } from "react-redux";
+import type { RootState } from "../store/store";
 
 export const usePanelEstados = () =>{
-    //Estado para traer los elementos de la lista de guias leyendo el localStorage
-    const [listaGuias,setListaGuias]=useState<Package[]>(() => {
-       const guiasAlmacenadas = localStorage.getItem("listaGuias");
-        return guiasAlmacenadas ? JSON.parse(guiasAlmacenadas) : [];
-    }); 
+    const listaGuias = useSelector((state: RootState) => state.guides.guides);
 
     //Uso useMemo para filtrar las listas automaticamente
     const { Pendiente, EnTransito, Entregado, contadorPaquetesActivos, maxFilas} = useMemo(()=>{

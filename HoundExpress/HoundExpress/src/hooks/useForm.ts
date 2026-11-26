@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 import type { Package } from "../types/Package";
+import type { AppDispatch, RootState } from "../store/store";
+import { useDispatch, useSelector } from "react-redux";
+import { addGuide } from "../store/guidesSlice";
 
 export const useRegistroGuia = () => {
-    //Estado para traer los elementos de la lista de guias leyendo el localStorage
-    const [listaGuias,setListaGuias]=useState<Package[]>(() => {
-        const guiasAlmacenadas = localStorage.getItem("listaGuias");
-        return guiasAlmacenadas ? JSON.parse(guiasAlmacenadas) : [];
-    });
 
     //Estados de inicio 
     const [numGuia, setNumGuia] = useState("");
@@ -14,11 +12,9 @@ export const useRegistroGuia = () => {
     const [destino,setDestino] = useState("");
     const [fechaRegistro,setFechaRegistro] = useState("");
     const [estadoActual, setEstadoActual] = useState("");
+    const dispatch = useDispatch<AppDispatch>();
+    const listaGuias = useSelector((state: RootState) => state.guides.guides);
 
-    //funcion que verifica si ya existe esa guia en la lista
-    const validacionGuias = (numGuia: number): boolean =>{
-        return !listaGuias.some( paquete => paquete.numGuia === numGuia);
-    }
     //Funcion para manejar el llenado del formulario
     const handleSubmit=( e: React.FormEvent<HTMLFormElement>) =>{
         e.preventDefault();
@@ -30,11 +26,13 @@ export const useRegistroGuia = () => {
             alert("Por favor ingresa un numero de guia");
             return;
         }
-        //Validacion de que ya existe el numero de guia en la lista
-        if(!validacionGuias(numGuiaStringInt)){
-            alert("Este numero de guia ya esta registrada,Por favor ingresa otra")
+
+        const existeGuia = listaGuias.some((g) => g.numGuia === numGuiaStringInt);
+        if(existeGuia){
+            alert(`El número de guia ${numGuiaStringInt} ya esta registrado.`);
             return;
         }
+
         //Se crea el nuevo Paquete
         const nuevoPaquete: Package={
             numGuia:numGuiaStringInt,
@@ -44,9 +42,7 @@ export const useRegistroGuia = () => {
             estadoActual,
             historialEstados:[estadoActual,fechaRegistro],
         }
-        //Se actualiza la lista crenado una copia del estado anterior de la lista
-        //Y añadiendo el nuevo Paquete
-        setListaGuias([...listaGuias,nuevoPaquete]);
+        dispatch(addGuide(nuevoPaquete));
         //Limpiamos el valor de los inputs
         setNumGuia("");
         setOrigen("");
@@ -54,12 +50,6 @@ export const useRegistroGuia = () => {
         setFechaRegistro("");
         setEstadoActual("");
     };
-    //Se actualiza la lista de localStorage cada que detecta un cambio en listaGuias 
-    useEffect(() =>{
-            localStorage.setItem("listaGuias",JSON.stringify(listaGuias));
-            console.log("Cambio en las guias:" + {listaGuias})
-    },[listaGuias])
-
     return{
         numGuia,
         origen,

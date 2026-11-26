@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import type { Package } from "../types/Package"
+import { useDispatch, useSelector } from "react-redux";
+import type { AppDispatch, RootState } from "../store/store";
+import { updatePackage } from "../store/guidesSlice";
 
 export const useListaGuias=()=>{
-    const [listaGuias,setListaGuias] = useState<Package[]>(() => {
-        const guiasAlmacenadas= localStorage.getItem("listaGuias");
-        return guiasAlmacenadas ? JSON.parse(guiasAlmacenadas):[];
-    });
+    const listaGuias = useSelector((state: RootState) => state.guides.guides);
+    const dispatch = useDispatch<AppDispatch>();
 
     const [paqueteHistorial, setPaqueteHistorial] = useState<Package | null>(null); 
 
@@ -23,43 +24,27 @@ export const useListaGuias=()=>{
     }
 
     const actualizarPaquete = (numGuia: number) =>{
-        const fechaDia = new Date().getDate();
-        const fechaMes = new Date().getMonth() + 1;
-        const fechaAño = new Date().getFullYear();
-        const fechaNueva = `${fechaAño}-${fechaMes}-${fechaDia}`;
-        setListaGuias( listaAnterior => {
-            return listaAnterior.map( paquete => {
-                if(paquete.numGuia === numGuia){
-                    if(paquete.estadoActual === "Pendiente"){
-                        console.log("Cambio el estado del paquete de Pendiente a En transito");
-                        return{
-                            ...paquete,
-                            estadoActual: "EnTransito",
-                            fechaRegistro: fechaNueva,
-                            historialEstados: [...paquete.historialEstados,"EnTransito",fechaNueva] 
-                        };
-                    }else if(paquete.estadoActual === "EnTransito"){
-                        console.log("Cambio el estado del En Transito");
-                        return{
-                            ...paquete,
-                            estadoActual:"Entregado",
-                            fechaRegistro:fechaNueva,
-                            historialEstados:[...paquete.historialEstados,"Entregado",fechaNueva]
-                        };
-                    }else{
-                        console.log("El estado del paquete ya no se puede actualizar");
-                        return paquete;
-                    }
-                }
-                return paquete;
-            });
+        const paquete = listaGuias.find((p) => p.numGuia === numGuia);
+        if(!paquete) return;
 
-        })
+        let nuevoEstado = "";
+        if(paquete.estadoActual === "Pendiente"){
+            nuevoEstado = "EnTransito";
+        } else if(paquete.estadoActual === "EnTransito"){
+            nuevoEstado = "Entregado";
+        }else{
+            console.log("El estado del paquete ya no se puede actualizar")
+        }
+        const fechaHoy = new Date();
+        const fechaNueva = `${fechaHoy.getFullYear()}-${fechaHoy.getMonth() + 1}-${fechaHoy.getDate()}`;
+
+        dispatch(updatePackage({
+            numGuia,
+            estadoActual:nuevoEstado,
+            fechaRegistro: fechaNueva,
+        }));
+
     }
-    useEffect(() => {
-        localStorage.setItem("listaGuias", JSON.stringify(listaGuias));
-    
-    },[listaGuias]);
 
 
     return{

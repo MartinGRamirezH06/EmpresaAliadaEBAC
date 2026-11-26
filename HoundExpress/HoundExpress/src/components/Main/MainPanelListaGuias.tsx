@@ -50,18 +50,18 @@ const MainPanelListaGuias = () =>{
                                 <p className="title">Historial</p>
                             </div>
                             {paqueteHistorial.historialEstados.map((item, index) =>{
-                                if(index %2 === 0){
-                                    return(
-                                        <article key={index} className="historial-container-Registro">
-                                            {/* El estado es el indide actual  */}
-                                            {/* LA fecha siempre esta por delante del estado */}
-                                            <p>{item}</p>
-                                            <p>{paqueteHistorial.historialEstados[index + 1]}</p>
+                                if(index %2 !== 0) return null;
+                                
+                                const estado = item;
+                                const fecha = paqueteHistorial.historialEstados[index + 1];    
+                                    
+                                return(
+                                    <article key={index} className="historial-container-Registro">
+                                        <p>{estado}</p>
+                                        <p>{fecha}</p>
                                             
-                                        </article>
-                                    );
-                                }
-                                return null;
+                                    </article>
+                                );
                             })}
                             </ContainerHistorial>
                     )}                 
